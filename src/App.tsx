@@ -1,13 +1,21 @@
-import { useMemo, useState, useEffect } from "react";
+import { useMemo, useState, useEffect, useRef } from "react";
 import { addDays, eachDayOfInterval, format, startOfToday } from "date-fns";
 import { nl } from "date-fns/locale";
-import { Overflowbox } from "@hffxx/react-overflow-box";
 import "./App.scss";
 
 function App() {
-  const [sliceDays, setSliceDays] = useState(0);
   const [selectedDate, setSelectedDate] = useState(startOfToday());
   const [randomDays, setRandomDays] = useState([0]);
+  const ref = useRef<HTMLInputElement>(null);
+  const handleClick = (left: boolean) => {
+    const element = ref.current;
+    if (element && left) {
+      element.scrollLeft += 100;
+    }
+    if (element && !left) {
+      element.scrollLeft -= 100;
+    }
+  };
 
   const fourteenDays = useMemo(() => {
     return eachDayOfInterval({
@@ -31,8 +39,8 @@ function App() {
     return randomDays.map((day) => fourteenDays[day]);
   }, [randomDays, fourteenDays]);
 
-  const SlicedDays = () => {
-    return fourteenDays.slice(sliceDays, sliceDays + 6).map((day, index) => (
+  const RenderedDays = () => {
+    return fourteenDays.map((day, index) => (
       <div
         key={index}
         className={`dayBox ${
@@ -49,24 +57,15 @@ function App() {
   return (
     <div className="container">
       <div className="main">
-        <button
-          className="button"
-          onClick={() => setSliceDays(sliceDays && sliceDays - 1)}
-        >
+        <button className="button" onClick={() => handleClick(false)}>
           &lt;
         </button>
 
-        <Overflowbox className="overflowBox">
-          <div className="dateRow">
-            <SlicedDays />
-          </div>
-        </Overflowbox>
-        <button
-          className="button"
-          onClick={() =>
-            setSliceDays(sliceDays < 9 ? sliceDays + 1 : sliceDays)
-          }
-        >
+        <div className="dateRow" ref={ref}>
+          <RenderedDays />
+        </div>
+
+        <button className="button" onClick={() => handleClick(true)}>
           &gt;
         </button>
       </div>
