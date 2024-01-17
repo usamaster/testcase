@@ -1,0 +1,108 @@
+body {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.container {
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.main {
+  display: flex;
+  overflow: hidden;
+
+  @media (max-width: 767px) {
+    flex-direction: column; // Stack elements vertically on small screens
+  }
+}
+
+.dateRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+
+  @media (max-width: 767px) {
+    overflow-x: auto; // Allow horizontal scrolling on small screens
+    -webkit-overflow-scrolling: touch; // Enable smooth scrolling on iOS
+    scrollbar-width: thin;
+  }
+}
+
+.dayBox {
+  border: 2px solid #a09f9f;
+  padding: 30px;
+  border-radius: 20px;
+  font-family: "Roboto", sans-serif;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+  line-height: 1.5;
+  margin: 0 1rem;
+  cursor: pointer;
+  max-height: 3em; /* Adjust the maximum height to your preference */
+  min-width: 3em; /* Adjust the minimum width to your preference */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  &.selected {
+    border-color: #cf2d73;
+  }
+
+  &.disabled {
+    border-color: #e2e2e2;
+    cursor: not-allowed;
+  }
+}
+
+.button {
+  border-radius: 10px;
+  border: none;
+  width: 50px;
+  height: 50px;
+  background-color: #cf2d73;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 1rem;
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+
+  @media (max-width: 767px) {
+    display: none; // Hide buttons on small screens
+  }
+}
+
+.showDate {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.showDate div {
+  border: 2px solid #a09f9f;
+  padding: 30px;
+  border-radius: 20px;
+  font-family: "Roboto", sans-serif;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  line-height: 1.5;
+  margin: 0 1rem;
+  cursor: pointer;
+  width: 30%;
+}
+
+@media only screen and (max-width: 767px) {
+  .overflowBox {
+    width: 375px; // Set the width to 375 on mobile
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+}
