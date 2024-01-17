@@ -40,7 +40,7 @@ body {
   border-radius: 20px;
   font-family: "Roboto", sans-serif;
   font-size: 1.2rem;
-  font-weight: bold;
+
   text-align: center;
   line-height: 1.5;
   margin: 0 1rem;
@@ -53,11 +53,13 @@ body {
 
   &.selected {
     border-color: #cf2d73;
+    font-weight: bold;
   }
 
   &.disabled {
     border-color: #e2e2e2;
     cursor: not-allowed;
+    color: #a09f9f;
   }
 }
 
@@ -101,7 +103,7 @@ body {
 
 @media only screen and (max-width: 767px) {
   .overflowBox {
-    width: 375px; // Set the width to 375 on mobile
+    width: 30em; // Set the width to 375 on mobile
     overflow-x: auto;
     white-space: nowrap;
   }
