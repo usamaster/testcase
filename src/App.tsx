@@ -7,6 +7,7 @@ function App() {
   const [selectedDate, setSelectedDate] = useState(startOfToday());
   const [randomDays, setRandomDays] = useState([0]);
   const ref = useRef<HTMLInputElement>(null);
+
   const handleClick = (left: boolean) => {
     const element = ref.current;
     if (element && left) {
