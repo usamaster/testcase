@@ -8,16 +8,19 @@ describe('App', () => {
   it('Renders all buttons and dates', () => {
     render(<App />);
 
-    const dateDivs = screen.getAllByRole('button');
-    expect(dateDivs).toHaveLength(17);
+    const allButtons = screen.getAllByRole('button');
+    expect(allButtons).toHaveLength(16);
 
-    expect(dateDivs[1].textContent).toBe(
+    expect(allButtons[0].textContent).toBe('<');
+    expect(allButtons[15].textContent).toBe('>');
+
+    expect(allButtons[1].textContent).toBe(
       format(new Date(), 'EEE', { locale: nl }) +
         format(new Date(), 'dd MMM', { locale: nl })
     );
   });
 
-  it('Selects a available date, but not an unavailable date', () => {
+  it('Selects an available date, but not an unavailable date', () => {
     render(<App />);
     const allButtons = screen.getAllByRole('button');
 

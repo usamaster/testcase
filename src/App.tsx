@@ -5,7 +5,6 @@ import './App.scss';
 
 function App() {
   const [selectedDate, setSelectedDate] = useState(startOfToday());
-  const [randomDays, setRandomDays] = useState([0]);
   const [, setIsScrolling] = useState(false);
   const intervalRef = useRef(0);
   const ref = useRef<HTMLInputElement>(null);
@@ -33,11 +32,11 @@ function App() {
   const fourteenDays = useMemo(() => {
     return eachDayOfInterval({
       start: startOfToday(),
-      end: addDays(startOfToday(), 14),
+      end: addDays(startOfToday(), 13),
     });
   }, []);
 
-  useEffect(() => {
+  const randomDays = useMemo(() => {
     const newRandomDays = [];
     while (newRandomDays.length < 4) {
       const randomDay = Math.floor(Math.random() * 14);
@@ -45,7 +44,7 @@ function App() {
         newRandomDays.push(randomDay);
       }
     }
-    setRandomDays(newRandomDays);
+    return newRandomDays;
   }, []);
 
   const randomDates = useMemo(() => {
