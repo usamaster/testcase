@@ -1,4 +1,4 @@
-import { useMemo, useState, useEffect, useRef } from 'react';
+import { useMemo, useState, useRef } from 'react';
 import { addDays, eachDayOfInterval, format, startOfToday } from 'date-fns';
 import { nl } from 'date-fns/locale';
 import './App.scss';
